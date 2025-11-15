@@ -1,8 +1,10 @@
+// ...existing code...
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
+import Notes from "./components/Notes";
 import NoteState from "./context/notes/NoteState";
 import Alert from "./components/Alert";
 import Login from "./components/Login";
@@ -18,8 +20,8 @@ function App() {
     })
     setTimeout(() =>  {
       setAlert(null);
-    }, 1500); // removing Alert pop-up after 3 secs
-  }  // show alert will take alert message and take type of laert
+    }, 3000); // removing Alert pop-up after 3 secs
+  }
 
   return (
     <>
@@ -31,6 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home showAlert={showAlert} />} />
             <Route path="/about" element={<About />} />
+            <Route path="/notes" element={<Notes showAlert={showAlert} />} />
             <Route path="/login" element={<Login showAlert={showAlert}  />} />
             <Route path="/signup" element={<Signup showAlert={showAlert}  />} />
           </Routes>
@@ -42,3 +45,4 @@ function App() {
 }
 
 export default App;
+// ...existing code...
