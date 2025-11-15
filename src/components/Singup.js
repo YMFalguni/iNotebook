@@ -96,7 +96,8 @@ const Signup = (props) => {
 
         const { name, email, password } = credentials;
         try {
-            const response = await fetch("http://localhost:5000/api/auth/createuser", {
+            const host = process.env.REACT_APP_HOST;
+            const response = await fetch(`${host}/api/auth/createuser`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

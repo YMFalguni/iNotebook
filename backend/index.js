@@ -6,7 +6,15 @@ connectToMongo();
 const app = express()
 const port = 5000
 
-app.use(cors())
+
+
+const cors = require("cors");
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 
 app.use(express.json()); // Middleware to parse JSON bodies
 

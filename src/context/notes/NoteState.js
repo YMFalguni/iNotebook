@@ -3,7 +3,9 @@ import { useState } from "react";
 import API_ENDPOINTS from "../../config/apiConfig";
 
 const NoteState = (props)=>{
-    const host = process.env.REACT_APP_HOST || "http://localhost:5000";
+    // const host = process.env.REACT_APP_HOST || "http://localhost:5000";
+    // const host = "https://inotebook-2-yxk2.onrender.com";
+    const host = process.env.REACT_APP_HOST;  // something like your backend URL
     const notesInitial = [];
 // GET ALL NOTES
     const getNotes = async ()=>{
