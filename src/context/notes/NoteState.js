@@ -8,15 +8,20 @@ const NoteState = (props)=>{
 // GET ALL NOTES
     const getNotes = async ()=>{
 // API CALL
-      const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-          method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': localStorage.getItem("token")
-            }
-        });
-        const json = await response.json();
-        setNotes(json);
+      try {
+        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+            method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'auth-token': localStorage.getItem("token")
+              }
+          });
+          const json = await response.json();
+          setNotes(json);
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+        setNotes([]);
+      }
     }
 
 // ADD A NOTE
