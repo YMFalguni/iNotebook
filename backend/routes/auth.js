@@ -1,12 +1,13 @@
 const express = require("express");
-const router = express.Router();
 const User = require("../models/User");
+const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 var JWT = require("jsonwebtoken");
 var fetchUser = require("../middleware/fetchUser");
 
 const JWT_SECRET = "falguniym";
+
 //Route1: create a user using: POST "/api/auth/createuser". No login required
 router.post(
   "/createuser",
@@ -18,10 +19,11 @@ router.post(
       .withMessage("Password must be at least 5 characters long"),
   ],
   async (req, res) => {
-     let success = false;
+    //  let success = false;
     // if there are errors, return then return 400 bad request
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.error("Validation errors:", errors.array());
       return res.status(400).json({success, errors: errors.array() });
     }
     // check whether the user with this email exists already
@@ -77,12 +79,14 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (!user) {
+        success = false
         return res
           .status(400)
           .json({ errors: "Please Enter the correct credentials" });
       }
       const passwordcompare = await bcrypt.compare(password, user.password);
       if (!passwordcompare) {
+        success = false
         return res
           .status(400)
           .json({ success, errors: "Please Enter the correct credentials" });

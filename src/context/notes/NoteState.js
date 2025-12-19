@@ -1,10 +1,9 @@
 import NoteContext from "./noteContext";
 import { useState } from "react";
-import API_ENDPOINTS from "../../config/apiConfig";
-
 const NoteState = (props)=>{
     const host = process.env.REACT_APP_HOST;
     const notesInitial = [];
+    
 // GET ALL NOTES
     const getNotes = async ()=>{
 // API CALL
@@ -69,10 +68,20 @@ const editNote = async (id, title, description, tag) => {
     body: JSON.stringify({ title, description, tag }),
   });
   const json = await res.json();
-  // update local state immutably
-  setNotes(notes.map(n => (n._id === id ? { ...n, title, description, tag } : n)));
-  return json;
-};
+
+   let newNotes = JSON.parse(JSON.stringify(notes))
+    // Logic to edit in client
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
+      if (element._id === id) {
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag; 
+        break; 
+      }
+    }  
+    setNotes(newNotes);
+  }
 
 return (
     <NoteContext.Provider value={{notes, setNotes, addNote, deleteNote, editNote, getNotes}}>
