@@ -77,6 +77,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import API_ENDPOINTS from '../config/apiConfig';
 
 const Signup = (props) => {
     const [credentials, setCredentials] = useState({
@@ -96,8 +97,7 @@ const Signup = (props) => {
 
         const { name, email, password } = credentials;
         try {
-            const host = process.env.REACT_APP_HOST;
-            const response = await fetch(`${host}/api/auth/createuser`, {
+            const response = await fetch(API_ENDPOINTS.SIGNUP, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -60,6 +60,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import API_ENDPOINTS from '../config/apiConfig';
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -68,9 +69,7 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const host = process.env.REACT_APP_HOST;
-            
-            const response = await fetch(`${host}/api/auth/login`, {
+            const response = await fetch(API_ENDPOINTS.LOGIN, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
