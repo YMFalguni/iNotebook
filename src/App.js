@@ -10,6 +10,7 @@ import Alert from "./components/Alert";
 import Login from "./components/Login";
 import Signup from "./components/Singup";
 import { useState } from "react";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function App() {
    const [alert,setAlert]= useState (null);
