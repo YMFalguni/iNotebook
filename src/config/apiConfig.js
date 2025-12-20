@@ -7,7 +7,7 @@ const API_ENDPOINTS = {
   GET_USER: `${API_BASE_URL}/auth/getuser`,
 
   // Notes
-  GET_NOTES: `${API_BASE_URL}/auth/createuser`,
+  GET_NOTES: `${API_BASE_URL}/notes/fetchallnotes`,
   ADD_NOTE: `${API_BASE_URL}/notes/addnote`,
   UPDATE_NOTE: `${API_BASE_URL}/notes/updatenote`,
   DELETE_NOTE: `${API_BASE_URL}/notes/deletenote`,
