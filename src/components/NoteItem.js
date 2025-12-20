@@ -34,7 +34,7 @@ const NoteItem = (props) => {
   const { note, updateNote } = props;
 
   return (
-    <div className="card col-md-4">
+    <div className="card col-md-4 my-3">
       <div className="card-body">
         <div className="d-flex justify-content-between align-items-start mb-2">
           <div>
@@ -68,4 +68,3 @@ const NoteItem = (props) => {
 };
 
 export default NoteItem;
-// ...existing code...
